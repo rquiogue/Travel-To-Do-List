@@ -46,6 +46,11 @@ func main() {
 	}
 
 	r := router.NewRouter(db)
-	fmt.Println("Server running on http://localhost:8080")
-	r.Run(":8080")
+	port := os.Getenv("PORT")
+    if port == "" {
+        port = "8080" // default for local dev
+    }
+
+	fmt.Println("Server running on http://localhost:" + port)
+    r.Run(":" + port)
 }
